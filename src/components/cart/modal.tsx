@@ -48,6 +48,11 @@ export default function CartModal() {
     }
   }, [isOpen, cart?.totalQuantity, quantityRef]);
 
+  const handleCheckout = async (event: React.FormEvent) => {
+    event.preventDefault(); // Prevents the form from submitting in the default way
+    await redirectToCheckout();
+  };
+
   return (
     <>
       <button aria-label="Open cart" onClick={openCart}>
@@ -212,7 +217,7 @@ export default function CartModal() {
                       />
                     </div>
                   </div>
-                  <form action={redirectToCheckout}>
+                  <form onSubmit={handleCheckout}>
                     <CheckoutButton />
                   </form>
                 </div>
